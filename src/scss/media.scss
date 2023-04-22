@@ -1,0 +1,15 @@
+$desktop_min_width: 992px;
+$pad_max_width: 991px;
+$pad_min_width: 768px;
+
+@mixin pad() {
+  @media screen and (min-width: $pad_min_width) and (max-width: $pad_max_width) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: $desktop_min_width) {
+    @content;
+  }
+}
