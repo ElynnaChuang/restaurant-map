@@ -55,7 +55,9 @@ module.exports = {
     'global-require': 0,
     'no-restricted-exports': 0,
     'no-console': 'warn',
+    'no-alert': 0,
     'no-param-reassign': ['error', { props: false }],
     'arrow-body-style': 0,
+    'consistent-return': 1,
   },
 };

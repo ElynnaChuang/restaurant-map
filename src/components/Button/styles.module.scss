@@ -1,0 +1,73 @@
+@import '../../scss/color';
+
+%base_btn {
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0.5rem 0.75rem;
+
+  font-weight: 500;
+
+  border-radius: 0.5rem;
+
+  transition: all ease-out 0.3s;
+
+  & svg {
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    transition: all ease-out 0.3s;
+  }
+}
+
+.primary {
+  @extend %base_btn;
+
+  color: $primary;
+  background-color: #fff;
+  border: 2px solid rgba($color: $primary, $alpha: 50%);
+
+  &:hover {
+    color: #fff;
+    background-color: $primary;
+  }
+}
+
+.secondary {
+  @extend %base_btn;
+
+  color: $secondary;
+  background-color: #fff;
+  border: 2px solid rgba($color: $secondary, $alpha: 50%);
+
+  &:hover {
+    color: #fff;
+    background-color: $secondary;
+  }
+}
+
+.success {
+  @extend %base_btn;
+
+  color: $success;
+  background-color: #fff;
+  border: 2px solid rgba($color: $success, $alpha: 50%);
+
+  &:hover {
+    color: #fff;
+    background-color: $success;
+  }
+}
+
+.danger {
+  @extend %base_btn;
+
+  color: $danger;
+  background-color: #fff;
+  border: 2px solid rgba($color: $danger, $alpha: 50%);
+
+  &:hover {
+    color: #fff;
+    background-color: $danger;
+  }
+}

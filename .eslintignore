@@ -3,4 +3,3 @@ dist
 node_modules
 public
 !.eslintrc.js
-src/Pages/09DevtoolTricks/data.jsx

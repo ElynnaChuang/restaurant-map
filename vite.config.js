@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react';
 import svgrPlugin from 'vite-plugin-svgr';
 import eslintPlugin from 'vite-plugin-eslint';
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env.production' });
 
 export default ({ mode }) =>
   defineConfig({
@@ -17,6 +20,7 @@ export default ({ mode }) =>
     define: {
       'process.env.NODE_ENV': `"${mode}"`,
     },
+    envDir: './env/',
     resolve: {
       alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
     },
