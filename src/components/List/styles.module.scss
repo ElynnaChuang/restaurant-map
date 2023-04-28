@@ -1,0 +1,13 @@
+.cards {
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem 1rem;
+
+  height: 100%;
+  padding: 0 1rem 1rem; // 避免陰影被切掉
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
