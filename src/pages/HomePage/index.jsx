@@ -1,23 +1,59 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import { ReportProblem } from '@mui/icons-material';
 import { Map } from '../../components/Map';
-
-import styles from './styles.module.scss';
 import { List } from '../../components/List';
 
+import styles from './styles.module.scss';
+
 export const HomePage = () => {
+  const [allowPositioning, setAllowPositioning] = useState(true);
+  const [userPosition, setUserPosition] = useState(null);
   const [positionData, setPositionData] = useState([]);
+  useEffect(() => {
+    if (userPosition) return;
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        setAllowPositioning(true);
+        const { latitude, longitude } = pos.coords;
+        setUserPosition({ lat: latitude, lng: longitude });
+      },
+      err => {
+        setAllowPositioning(false);
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      },
+    );
+  }, []);
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>你附近的美食</h2>
-      <div className={styles.container}>
-        <div className={styles.left_part}>
-          <Map setData={setPositionData} />
+      <h2 className={styles.title}>What to Eat ?</h2>
+      {!allowPositioning && (
+        <div className={styles.error}>
+          <h3>
+            <ReportProblem sx={{ fontSize: 40 }} />
+            無定位權限
+          </h3>
         </div>
-        <div className={styles.right_part}>
-          <List data={positionData} />
+      )}
+
+      {allowPositioning && !userPosition && (
+        <div className={styles.progress}>
+          <h3>定位中</h3>
+          <CircularProgress />
         </div>
-      </div>
+      )}
+
+      {allowPositioning && userPosition && (
+        <div className={styles.container}>
+          <div className={styles.left_part}>
+            <Map userPosition={userPosition} setData={setPositionData} />
+          </div>
+          <div className={styles.right_part}>
+            <List data={positionData} />
+          </div>
+        </div>
+      )}
     </section>
   );
 };

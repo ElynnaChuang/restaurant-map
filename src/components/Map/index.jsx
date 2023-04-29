@@ -1,16 +1,15 @@
 import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import styles from './styles.module.scss';
 
 const libraries = ['places'];
-const location = { lat: 22.60913, lng: 120.317213 };
 
-export const Map = ({ setData }) => {
+export const Map = ({ userPosition, setData }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
     libraries,
   });
-  const center = useMemo(() => location, [location]);
+  const center = useRef(userPosition).current;
 
   const [markers, setMarkers] = useState([]);
   const setResultData = useCallback(setData, []);

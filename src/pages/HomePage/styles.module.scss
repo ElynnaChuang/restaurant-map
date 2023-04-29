@@ -37,3 +37,29 @@
   width: 50%;
   max-width: 700px;
 }
+
+.progress,
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+
+  height: 100%;
+
+  & h3 {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    margin-top: 30vh;
+
+    font-size: 2rem;
+    font-weight: 500;
+    color: #898989;
+  }
+}
+
+.error h3 {
+  color: #fe745f;
+}
