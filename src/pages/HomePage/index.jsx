@@ -28,32 +28,32 @@ export const HomePage = () => {
   return (
     <section className={styles.section}>
       <h2 className={styles.title}>What to Eat ?</h2>
-      {!allowPositioning && (
-        <div className={styles.error}>
-          <h3>
-            <ReportProblem sx={{ fontSize: 40 }} />
-            無定位權限
-          </h3>
-        </div>
-      )}
-
-      {allowPositioning && !userPosition && (
-        <div className={styles.progress}>
-          <h3>定位中</h3>
-          <CircularProgress />
-        </div>
-      )}
-
-      {allowPositioning && userPosition && (
-        <div className={styles.container}>
-          <div className={styles.left_part}>
-            <Map userPosition={userPosition} setData={setPositionData} />
+      <div className={styles.container}>
+        {!allowPositioning && (
+          <div className={styles.error}>
+            <h3>
+              <ReportProblem sx={{ fontSize: 40 }} />
+              無定位權限
+            </h3>
           </div>
-          <div className={styles.right_part}>
-            <List data={positionData} />
+        )}
+        {allowPositioning && !userPosition && (
+          <div className={styles.progress}>
+            <h3>定位中</h3>
+            <CircularProgress />
           </div>
-        </div>
-      )}
+        )}
+        {allowPositioning && userPosition && (
+          <>
+            <div className={styles.left_part}>
+              <Map userPosition={userPosition} setData={setPositionData} />
+            </div>
+            <div className={styles.right_part}>
+              <List data={positionData} />
+            </div>
+          </>
+        )}
+      </div>
     </section>
   );
 };

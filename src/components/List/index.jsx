@@ -22,22 +22,28 @@ export const List = ({ data }) => {
   return (
     <>
       <DrawBox max={MAX_OPTION} data={drawData} setData={setDrawData} />
-      <div className={styles.cards}>
-        {positionData.map(({ id, name, coverImage, address, rating, totalRateUser }) => {
-          return (
-            <Card
-              key={id}
-              id={id}
-              title={name}
-              image={coverImage}
-              address={address}
-              rating={rating}
-              totalRateUser={totalRateUser}
-              onClick={() => handleAddToDraw(id)}
-            />
-          );
-        })}
-      </div>
+      {!positionData.length ? (
+        <div className={styles.no_result}>尚無結果</div>
+      ) : (
+        <div className={styles.cards}>
+          {positionData.map(
+            ({ id, name, coverImage, address, rating, totalRateUser }) => {
+              return (
+                <Card
+                  key={id}
+                  id={id}
+                  title={name}
+                  image={coverImage}
+                  address={address}
+                  rating={rating}
+                  totalRateUser={totalRateUser}
+                  onClick={() => handleAddToDraw(id)}
+                />
+              );
+            },
+          )}
+        </div>
+      )}
     </>
   );
 };
