@@ -10,6 +10,8 @@ export const HomePage = () => {
   const [allowPositioning, setAllowPositioning] = useState(true);
   const [userPosition, setUserPosition] = useState(null);
   const [positionData, setPositionData] = useState([]);
+  const [clickedId, setClickedId] = useState(null);
+
   useEffect(() => {
     if (userPosition) return;
     navigator.geolocation.getCurrentPosition(
@@ -46,10 +48,14 @@ export const HomePage = () => {
         {allowPositioning && userPosition && (
           <>
             <div className={styles.left_part}>
-              <Map userPosition={userPosition} setData={setPositionData} />
+              <Map
+                userPosition={userPosition}
+                setData={setPositionData}
+                setClickedId={setClickedId}
+              />
             </div>
             <div className={styles.right_part}>
-              <List data={positionData} />
+              <List data={positionData} clickedId={clickedId} />
             </div>
           </>
         )}

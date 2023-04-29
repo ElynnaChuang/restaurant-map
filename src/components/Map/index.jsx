@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 
 const libraries = ['places'];
 
-export const Map = ({ userPosition, setData }) => {
+export const Map = ({ userPosition, setData, setClickedId }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
     libraries,
@@ -65,7 +65,7 @@ export const Map = ({ userPosition, setData }) => {
           onLoad={onMapLoad}
         >
           {markers.map(({ id, position }) => (
-            <MarkerF key={id} position={position} onClick={() => console.log(id)} />
+            <MarkerF key={id} position={position} onClick={() => setClickedId?.(id)} />
           ))}
         </GoogleMap>
       ) : (

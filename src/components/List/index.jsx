@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 const MAX_OPTION = 6;
 
-export const List = ({ data }) => {
+export const List = ({ data, clickedId }) => {
   const positionData = useMemo(() => data, [data]);
   const [drawData, setDrawData] = useState([]);
 
@@ -31,13 +31,9 @@ export const List = ({ data }) => {
               return (
                 <Card
                   key={id}
-                  id={id}
-                  title={name}
-                  image={coverImage}
-                  address={address}
-                  rating={rating}
-                  totalRateUser={totalRateUser}
+                  cardInfo={{ name, coverImage, address, rating, totalRateUser }}
                   onClick={() => handleAddToDraw(id)}
+                  status={clickedId === id ? 'selected' : 'default'}
                 />
               );
             },

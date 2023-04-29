@@ -1,6 +1,6 @@
 @import '../../scss/color';
 
-.card {
+%base_card {
   position: relative;
 
   width: 100%;
@@ -9,7 +9,7 @@
   border-radius: $card_bdrs;
   box-shadow: 0 0 1rem 0 $box_shadow;
 
-  &_img {
+  .card_img {
     position: relative;
 
     overflow: hidden;
@@ -40,7 +40,7 @@
     }
   }
 
-  &_body {
+  .card_body {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
@@ -59,6 +59,16 @@
       transition: all ease-out 0.3s;
     }
   }
+}
+
+.card_default {
+  @extend %base_card;
+}
+
+.card_selected {
+  @extend %base_card;
+
+  box-shadow: 0 0 0 4px $success;
 }
 
 .title {
