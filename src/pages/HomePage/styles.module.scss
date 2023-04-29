@@ -1,4 +1,5 @@
 @import '../../scss/color';
+@import 'https://fonts.googleapis.com/css2?family=Alkatra:wght@700&display=swap';
 
 .section {
   display: flex;
@@ -7,15 +8,41 @@
   width: 100%;
   height: 100vh;
   padding: 2rem 0;
+
+  background: url('../../assets/bg.jpg');
+  background-size: cover;
+
+  &::after {
+    content: '';
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba($color: #fff, $alpha: 40%);
+    backdrop-filter: blur(4px);
+  }
 }
 
 .title {
-  font-size: 2rem;
+  position: relative;
+  z-index: 99;
+
+  font-family: Alkatra, cursive;
+  font-size: 3rem;
   font-weight: 500;
+  color: $primary;
   text-align: center;
+  text-shadow: 3px 2px #fff;
 }
 
 .container {
+  position: relative;
+  z-index: 99;
+
   display: flex;
   flex: 1;
   gap: 2rem;
@@ -38,16 +65,34 @@
   max-width: 700px;
 }
 
-.cards {
-  overflow-y: scroll;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem 1rem;
+.progress,
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
 
-  height: 100%;
-  padding: 0 1rem 1rem; // 避免陰影被切掉
+  width: 40%;
+  min-width: 400px;
+  height: 50%;
+  margin: 15vh auto auto;
 
-  &::-webkit-scrollbar {
-    display: none;
+  background-color: rgba($color: #fff, $alpha: 60%);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+
+  & h3 {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    font-size: 2rem;
+    font-weight: 500;
+    color: #898989;
   }
+}
+
+.error h3 {
+  color: #fe745f;
 }

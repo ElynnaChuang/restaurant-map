@@ -4,16 +4,18 @@ import { Button } from '../Button';
 import styles from './styles.module.scss';
 import defaultBg from '../../assets/restaurant_placeholder.png';
 
-export const Card = ({ title, image, rating, totalRateUser, address, onClick }) => {
+export const Card = ({ cardInfo, status, onClick }) => {
+  const { name, coverImage, address, rating, totalRateUser } = cardInfo;
+
   return (
-    <div className={styles.card}>
+    <div className={status === 'selected' ? styles.card_selected : styles.card_default}>
       <div className={styles.card_img}>
         <div className={styles.img_container}>
-          <img src={image || defaultBg} alt='...' />
+          <img src={coverImage || defaultBg} alt='...' />
         </div>
       </div>
       <div className={styles.card_body}>
-        <div className={styles.title}>{title}</div>
+        <div className={styles.title}>{name}</div>
         <div className={styles.tag}>
           <span>
             <FontAwesomeIcon icon={faStar} />
